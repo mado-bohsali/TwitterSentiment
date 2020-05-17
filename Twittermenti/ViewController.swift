@@ -36,8 +36,8 @@ class ViewController: UIViewController {
             let predictions = try self.sentimentClassifier.predictions(inputs: tweets)
                 
             var sentimentScore = 0
-            for preduction in predictions {
-                let sentiment = preduction.label
+            for prediction in predictions {
+                let sentiment = prediction.label
                 
                 if sentiment == "Pos" {
                     sentimentScore += 1
@@ -57,9 +57,9 @@ class ViewController: UIViewController {
     @IBAction func predictPressed(_ sender: Any) {
         
         if textField.text != nil {
+            
             //collection of relevant tweets as per query
-            swifter.searchTweet(using: "@Apple", tweetMode: .extended, success: { (results, metadata) in
-            //print(results)
+            swifter.searchTweet(using: "@\(textField.text!)", tweetMode: .extended, success: { (results, metadata) in
                 
                 var tweets = [TweetSentimentClassiferInput]()
                 
